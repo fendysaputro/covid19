@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#483D8B</color>
+    <color name="loginButton">#0652F6</color>
+    <color name="textColor">#FFFFFF</color>
+    <color name="textPrimary">#000000</color>
+    <color name="statusTransaction">#428BAB</color>
+    <color name="disable">#C0C0C0</color>
+    <color name="headerColor">#EE1748</color>
+</resources>

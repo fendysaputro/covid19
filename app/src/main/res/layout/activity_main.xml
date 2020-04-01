@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:headerLayout="@layout/profile_header"
+    tools:context=".MainActivity">
+
+    <include
+        android:id="@+id/pHeader"
+        layout="@layout/profile_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_below="@+id/pHeader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="20dp"
+        android:background="#FFFFFF"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/tab_bg"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/zxing_custom_possible_result_points"
+            app:tabRippleColor="@color/zxing_custom_viewfinder_laser"
+            app:tabUnboundedRipple="true"
+            android:layout_gravity="top" />
+
+    </androidx.viewpager.widget.ViewPager>
+
+</RelativeLayout>
