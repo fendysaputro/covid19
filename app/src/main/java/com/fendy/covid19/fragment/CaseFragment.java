@@ -21,6 +21,7 @@ import com.fendy.covid19.R;
 import com.fendy.covid19.App;
 import com.fendy.covid19.adapter.ListCountryAdapter;
 import com.fendy.covid19.model.Covid;
+import com.fendy.covid19.model.CovidIndonesia;
 import com.fendy.covid19.network.OnGetDataFinish;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class CaseFragment extends Fragment {
     Context context;
     ListView listCountry;
     ArrayList<Covid> covidArrayList = null;
+    ArrayList<CovidIndonesia> covidIndonesia = null;
     ListCountryAdapter listCountryAdapter;
     SwipeRefreshLayout swipeRefreshLayout = null;
 
@@ -52,11 +54,13 @@ public class CaseFragment extends Fragment {
 
         listCountry = (ListView) v.findViewById(R.id.listCase);
         covidArrayList = new ArrayList<Covid>();
+        covidIndonesia = new ArrayList<CovidIndonesia>();
 
-        listCountryAdapter = new ListCountryAdapter(getContext(), R.layout.custom_list_country_adapter, covidArrayList);
+        listCountryAdapter = new ListCountryAdapter(getContext(), R.layout.custom_list_country_adapter, covidIndonesia);
         listCountry.setAdapter(listCountryAdapter);
 
-        getDataCase("", covidArrayList, listCountryAdapter);
+//        getDataCase("", covidArrayList, listCountryAdapter);
+        getDataCaseByProvince("", covidIndonesia, listCountryAdapter);
 
         listCountry.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -87,6 +91,17 @@ public class CaseFragment extends Fragment {
     public void getDataCase (String data, final ArrayList<Covid> covids, final ListCountryAdapter adapter){
         appUtils = new AppUtils();
         appUtils.getCaseData(getContext(), app, covids, adapter);
+        appUtils.setOnGetDataFinish(new OnGetDataFinish() {
+            @Override
+            public void OnGetDataComplete() {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
+
+    public void getDataCaseByProvince (String data, final ArrayList<CovidIndonesia> covidIndonesias, final ListCountryAdapter adapter){
+        appUtils = new AppUtils();
+        appUtils.getCaseDataByProvince(getContext(), app, covidIndonesias, adapter);
         appUtils.setOnGetDataFinish(new OnGetDataFinish() {
             @Override
             public void OnGetDataComplete() {
